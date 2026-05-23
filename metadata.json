@@ -1,0 +1,10 @@
+{
+  "name": "OMR Result Extractor",
+  "description": "Android-style client-side smart OMR checker and result analyzer. Extracted with local storage and PDF exports, utilizing Gemini AI vision.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
