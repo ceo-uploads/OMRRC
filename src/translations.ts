@@ -47,7 +47,7 @@ export const translations: Record<"en" | "bn", Translations> = {
     languageLabel: "Change Language",
     termsTitle: "Terms & Conditions",
     termsContent: "By using this OMR Result Extractor applet, you agree that your exam scans are processed locally inside your browser and evaluated by high-precision server-side intelligence. The offline state is stored in your standard browser storage (localStorage) securely. We do not maintain server copies of exam sheets.",
-    securityTitle: "Security & Encryption",
+    securityTitle: "Privacy & Policy",
     securityContent: "This application is built with security first. All student results and captured pictures are cached natively in the user device. Result checking triggers an encrypted API endpoint to process OCR nodes safely. No automated background telemetry or identity tracking is enforced, assuring zero internal leaks.",
     socialFollow: "Follow Unreal Studio",
     adsenseTitle: "Sponsored Adsense Content",

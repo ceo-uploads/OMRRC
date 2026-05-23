@@ -570,7 +570,7 @@ export default function App() {
                     </h4>
                     <div className="flex gap-2">
                       <a
-                        href="https://facebook.com"
+                        href="https://www.facebook.com/people/%F0%9D%95%8C%F0%9D%95%9F%F0%9D%95%A3%F0%9D%95%96%F0%9D%95%92%F0%9D%95%9D-%F0%9D%95%8A%F0%9D%95%A5%F0%9D%95%A6%F0%9D%95%95%F0%9D%95%9A%F0%9D%95%A0/61589472447486/"
                         target="_blank"
                         rel="noreferrer"
                         className="flex-1 bg-blue-50 border border-blue-100 hover:bg-blue-100/60 p-2.5 rounded-xl text-xs font-bold text-blue-800 flex items-center justify-center gap-2 transition-all active:scale-95"
@@ -579,7 +579,7 @@ export default function App() {
                         Facebook
                       </a>
                       <a
-                        href="https://instagram.com"
+                        href="https://www.instagram.com/unreal.stdio?fbclid=IwY2xjawR-nExleHRuA2FlbQIxMABicmlkETFlRWdzRHlwcXJ3ZVVyc1ZJc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHv8MRh0RQ9_5HuiOR34i-O2N5cFiptWuXQPNz2GC413cBFn0pFslehNnjzG9_aem_oCMjmXlu-XYSbuDsR-yjBw"
                         target="_blank"
                         rel="noreferrer"
                         className="flex-1 bg-pink-50 border border-pink-100 hover:bg-pink-100/60 p-2.5 rounded-xl text-xs font-bold text-pink-800 flex items-center justify-center gap-2 transition-all active:scale-95"
