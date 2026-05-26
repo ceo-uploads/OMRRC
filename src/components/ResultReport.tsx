@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Download, Eye, FileText, CheckCircle, XCircle, Grid, HelpCircle, Loader2, RefreshCw } from "lucide-react";
+import { Download, Eye, FileText, CheckCircle, XCircle, Grid, HelpCircle, Loader2, RefreshCw, MoveHorizontal } from "lucide-react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { OMRScanResult, Translations, OMRQuestion } from "../types";
@@ -16,6 +16,28 @@ export const ResultReport: React.FC<ResultReportProps> = ({ result, lang, t }) =
   const [isExporting, setIsExporting] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const reportContainerRef = useRef<HTMLDivElement>(null);
+  const [scrollPercent, setScrollPercent] = useState(0);
+
+  // Sync scroll percent dynamically if the user scrolls the sheet directly
+  React.useEffect(() => {
+    const container = reportContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      if (maxScroll <= 0) {
+        setScrollPercent(0);
+        return;
+      }
+      const pct = Math.round((container.scrollLeft / maxScroll) * 100);
+      setScrollPercent(pct);
+    };
+
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      container.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   // States for student info so they are fully, accurately editable before PDF render
   const [studentName, setStudentName] = useState(result.studentName);
@@ -563,10 +585,10 @@ export const ResultReport: React.FC<ResultReportProps> = ({ result, lang, t }) =
               const pageQuestions = questions.slice(startIdx, startIdx + questionsPerPage);
 
               return (
-                <div
-                  key={pageIdx}
-                  className="omr-pdf-page bg-white p-6 md:p-8 w-[794px] min-w-[794px] min-h-[1122px] h-[1122px] relative flex flex-col justify-between shadow-xs border border-slate-200/50 md:rounded-2xl mx-auto text-left animate-fade"
-                >
+                <React.Fragment key={pageIdx}>
+                  <div
+                    className="omr-pdf-page bg-white p-6 md:p-8 w-[794px] min-w-[794px] min-h-[1122px] h-[1122px] relative flex flex-col justify-between shadow-xs border border-slate-200/50 md:rounded-2xl mx-auto text-left animate-fade"
+                  >
                   {/* PAGE TOP CONTENT CONTAINER */}
                   <div className="space-y-4">
                     {/* On Page 1 only: Render full institutional head and student credentials */}
@@ -802,7 +824,47 @@ export const ResultReport: React.FC<ResultReportProps> = ({ result, lang, t }) =
                       </div>
                     )}
                   </div>
+                  {/* MOBILITY HORIZONTAL SLIDER HELPERS FOR RESPONSIVE MOBILE DEVICE WIDTHS */}
+                  <div className="no-print block md:hidden sticky left-0 z-30 bg-white/95 backdrop-blur-md border border-slate-200 rounded-xl p-3 shadow-xs mt-3 w-full select-none">
+                    <div className="flex items-center justify-between text-[11px] font-bold text-slate-500 mb-1.5 px-1">
+                      <span className="flex items-center gap-1.5 uppercase tracking-wide">
+                        <MoveHorizontal className="h-4 w-4 text-indigo-600 animate-pulse" />
+                        {lang === "bn" ? "মোবাইল স্ক্রোল স্লাইডার" : "Mobile Scroll Slider"}
+                      </span>
+                      <span className="font-mono text-indigo-700 font-extrabold bg-indigo-50 px-2 py-0.5 rounded-md text-[10px]">
+                        {scrollPercent}%
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] font-black text-slate-400 uppercase">{lang === "bn" ? "বাম" : "Left"}</span>
+                      <div className="relative flex-1 flex items-center">
+                        <input
+                          type="range"
+                          min="0"
+                          max="100"
+                          value={scrollPercent}
+                          onChange={(e) => {
+                            const val = parseInt(e.target.value);
+                            setScrollPercent(val);
+                            if (reportContainerRef.current) {
+                              const container = reportContainerRef.current;
+                              const maxScroll = container.scrollWidth - container.clientWidth;
+                              if (maxScroll > 0) {
+                                container.scrollLeft = (val / 100) * maxScroll;
+                              }
+                            }
+                          }}
+                          className="w-full h-1.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-indigo-600"
+                          style={{
+                            background: `linear-gradient(to right, rgb(79, 70, 229) 0%, rgb(79, 70, 229) ${scrollPercent}%, rgb(241, 245, 249) ${scrollPercent}%, rgb(241, 245, 249) 100%)`
+                          }}
+                        />
+                      </div>
+                      <span className="text-[10px] font-black text-slate-400 uppercase">{lang === "bn" ? "ডান" : "Right"}</span>
+                    </div>
+                  </div>
                 </div>
+              </React.Fragment>
               );
             });
           })()}
