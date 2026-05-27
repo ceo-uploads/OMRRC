@@ -101,7 +101,25 @@ export const AdsenseBanner: React.FC<AdsenseBannerProps> = ({ type, lang, t }) =
 
   if (type === "top-banner") {
     return (
-      <div className="w-full bg-white/75 backdrop-blur-md border border-slate-200/80 rounded-2xl p-3 shadow-xs relative overflow-hidden transition-all hover:bg-white/95 mb-4 select-none">
+      <div className="w-full bg-white/75 backdrop-blur-md border border-slate-200/80 rounded-2xl p-2.5 xs:p-3 shadow-xs relative overflow-hidden transition-all hover:bg-white/95 mb-4 select-none">
+        <style dangerouslySetInnerHTML={{__html: `
+          #container-4fcc4a52d53e415500ceca70ff44cc09 {
+            max-width: 100% !important;
+            width: 100% !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            overflow: hidden !important;
+          }
+          #container-4fcc4a52d53e415500ceca70ff44cc09 iframe,
+          #container-4fcc4a52d53e415500ceca70ff44cc09 a,
+          #container-4fcc4a52d53e415500ceca70ff44cc09 img,
+          #container-4fcc4a52d53e415500ceca70ff44cc09 div {
+            max-width: 100% !important;
+            height: auto !important;
+            margin: 0 auto !important;
+          }
+        `}} />
         <div className="flex items-center justify-between text-[9px] text-slate-400 font-mono tracking-wider mb-2">
           <span className="bg-amber-100 text-amber-800 text-[8px] font-black px-1.5 py-0.5 rounded-sm uppercase tracking-widest leading-none">
             {lang === "bn" ? "স্পনসরড লিংক" : "Sponsored Unit"}
@@ -113,18 +131,18 @@ export const AdsenseBanner: React.FC<AdsenseBannerProps> = ({ type, lang, t }) =
         </div>
 
         {/* Real Adsterra Native Banner Container */}
-        <div className="w-full flex justify-center mb-1 overflow-hidden">
-          <div id="container-4fcc4a52d53e415500ceca70ff44cc09"></div>
+        <div className="w-full flex justify-center mb-1.5 overflow-hidden">
+          <div id="container-4fcc4a52d53e415500ceca70ff44cc09" className="w-full"></div>
         </div>
 
         {/* Fallback to direct Smartlink */}
-        <div className="flex items-center justify-between gap-3 mt-1.5 animate-fade border-t border-slate-100 pt-2 cursor-pointer" onClick={handleAdClick}>
-          <div className="flex-1">
-            <h4 className="text-xs font-bold text-slate-800 hover:text-indigo-600 flex items-center gap-1">
+        <div className="flex items-center justify-between gap-2.5 mt-1.5 animate-fade border-t border-slate-100 pt-2 cursor-pointer" onClick={handleAdClick}>
+          <div className="flex-1 min-w-0">
+            <h4 className="text-[11px] font-bold text-slate-800 hover:text-indigo-600 flex items-center gap-1 truncate">
               {activeAd.title}
-              <ExternalLink className="h-3 w-3 text-indigo-500 inline-block" />
+              <ExternalLink className="h-2.5 w-2.5 text-indigo-500 inline-block shrink-0" />
             </h4>
-            <p className="text-[10px] text-slate-500 line-clamp-1 mt-0.5 leading-snug">
+            <p className="text-[9px] text-slate-500 line-clamp-1 mt-0.5 leading-tight">
               {activeAd.desc}
             </p>
           </div>
@@ -134,7 +152,7 @@ export const AdsenseBanner: React.FC<AdsenseBannerProps> = ({ type, lang, t }) =
               e.stopPropagation();
               handleAdClick();
             }}
-            className="text-[10px] font-bold bg-indigo-600 text-white px-2.5 py-1 rounded-md shadow-xs hover:bg-indigo-700 whitespace-nowrap active:scale-95 transition-all cursor-pointer"
+            className="text-[9px] font-bold bg-indigo-600 text-white px-2 py-1 rounded shadow-2xs hover:bg-indigo-700 whitespace-nowrap active:scale-95 transition-all cursor-pointer shrink-0"
           >
             {activeAd.cta}
           </button>

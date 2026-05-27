@@ -154,14 +154,9 @@ export default function App() {
 
       {/* Frame wrapper mimicking clean modern Android UI scale layout styled as a Bento Grid Glass card */}
       <div className="w-full max-w-md glass border border-white/90 md:rounded-[40px] md:shadow-2xl h-full md:h-[840px] md:max-h-[96vh] flex flex-col justify-between relative overflow-hidden">
-        
-        {/* Global Adsense top header bar slot */}
-        <div className="px-4 pt-4 shrink-0">
-          <AdsenseBanner type="top-banner" lang={lang} t={t} />
-        </div>
 
         {/* Main Content Area */}
-        <main className="flex-1 overflow-y-auto px-4 pb-32 space-y-4">
+        <main className="flex-1 overflow-y-auto px-4 pb-32 pt-4 space-y-4">
           
           {/* Main App Title Logo structure */}
           <div className="flex items-center justify-between pb-2 border-b border-slate-200/60">
@@ -570,7 +565,7 @@ export default function App() {
                     </h4>
                     <div className="flex gap-2">
                       <a
-                        href="https://www.facebook.com/people/%F0%9D%95%8C%F0%9D%95%9F%F0%9D%95%A3%F0%9D%95%96%F0%9D%95%92%F0%9D%95%9D-%F0%9D%95%8A%F0%9D%95%A5%F0%9D%95%A6%F0%9D%95%95%F0%9D%95%9A%F0%9D%95%A0/61589472447486/"
+                        href="https://facebook.com"
                         target="_blank"
                         rel="noreferrer"
                         className="flex-1 bg-blue-50 border border-blue-100 hover:bg-blue-100/60 p-2.5 rounded-xl text-xs font-bold text-blue-800 flex items-center justify-center gap-2 transition-all active:scale-95"
@@ -579,7 +574,7 @@ export default function App() {
                         Facebook
                       </a>
                       <a
-                        href="https://www.instagram.com/unreal.stdio?fbclid=IwY2xjawR-nExleHRuA2FlbQIxMABicmlkETFlRWdzRHlwcXJ3ZVVyc1ZJc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHv8MRh0RQ9_5HuiOR34i-O2N5cFiptWuXQPNz2GC413cBFn0pFslehNnjzG9_aem_oCMjmXlu-XYSbuDsR-yjBw"
+                        href="https://instagram.com"
                         target="_blank"
                         rel="noreferrer"
                         className="flex-1 bg-pink-50 border border-pink-100 hover:bg-pink-100/60 p-2.5 rounded-xl text-xs font-bold text-pink-800 flex items-center justify-center gap-2 transition-all active:scale-95"
@@ -594,6 +589,11 @@ export default function App() {
 
             </motion.div>
           </AnimatePresence>
+
+          {/* Global Footer ad banner, highly responsive for mobile widths */}
+          <div className="pt-2 border-t border-slate-200/50 mt-4 shrink-0">
+            <AdsenseBanner type="top-banner" lang={lang} t={t} />
+          </div>
 
         </main>
 
